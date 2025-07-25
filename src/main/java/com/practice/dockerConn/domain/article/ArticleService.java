@@ -10,10 +10,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 public class ArticleService {
-    private final ArtilceRepository artilceRepository;
+    private final ArticleRepository articleRepository;
 
     public List<Article> getArticles () {
-        List<Article> articles = this.artilceRepository.findAll();
-        return articles;
+        return this.articleRepository.findAll();
     }
 }

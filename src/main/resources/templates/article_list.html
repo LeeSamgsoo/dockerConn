@@ -13,15 +13,12 @@
         <tr th:each="article, loop : ${articles}">
             <td th:text="${loop.count}"></td>
             <td>
-                <a th:href="@{|/article/detail/${article.id}|}" th:text="${
-question.subject}"></a>
+                <a th:text="${article.title}"></a> <!--th:href="@{|/article/detail/${article.id}|}"-->
             </td>
-            <td th:text="${#temporals.format(article.createdDate, 'yyyy-MM-dd HH
-
-:mm')}"></td>
+            <td th:text="${#temporals.format(article.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/question/create}" class="btn btn-primary">질 문 등 록 하 기</a>
+    <a class="btn btn-primary">질 문 등 록 하 기</a> <!-- th:href="@{/question/create}"-->
 </div>
 </html>
