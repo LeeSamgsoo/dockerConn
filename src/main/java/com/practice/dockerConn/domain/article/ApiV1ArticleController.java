@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -14,10 +16,20 @@ import java.util.List;
 public class ApiV1ArticleController {
     private final ArticleService articleService;
 
-    @GetMapping("")
+    @GetMapping("/list")
     public String readArticles (Model model) {
         List<Article> articles = this.articleService.getArticles();
         model.addAttribute("articles", articles);
         return "article_list";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String readArticle (Model model, @PathVariable(value = "id") Long id) {
+        Article article = this.articleService.getArticle(id);
+        if (article == null) {
+            return "redirect:/articles/list";
+        }
+        model.addAttribute("article", article);
+        return "article_detail";
     }
 }
