@@ -12,7 +12,7 @@
         <tr th:each="article, loop : ${articles}">
             <td th:text="${loop.count}"></td>
             <td>
-                <a th:text="${article.title}"></a> <!--th:href="@{|/article/detail/${article.id}|}"-->
+                <a th:href="@{|/articles/detail/${article.id}|}" th:text="${article.title}"></a>
             </td>
             <td th:text="${#temporals.format(article.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
         </tr>
