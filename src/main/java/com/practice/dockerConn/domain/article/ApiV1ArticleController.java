@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +42,7 @@ public class ApiV1ArticleController {
     }
 
     @PostMapping("/create")
-    public String createArticle (Model model) {
+    public String createArticle (@Valid ArticleForm articleForm, BindingResult bindingResult) {
         return "article_list";
     }
 }

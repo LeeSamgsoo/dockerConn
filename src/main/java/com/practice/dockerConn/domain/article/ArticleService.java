@@ -19,4 +19,12 @@ public class ArticleService {
     public Article getArticle (Long id) {
         return this.articleRepository.findById(id).orElse(null);
     }
+
+    public void createArticle (ArticleForm articleForm) {
+        Article article = Article.builder()
+                .title(articleForm.getTitle())
+                .content(articleForm.getContent())
+                .build();
+        this.articleRepository.save(article);
+    }
 }
