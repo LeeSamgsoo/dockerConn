@@ -43,6 +43,10 @@ public class ApiV1ArticleController {
 
     @PostMapping("/create")
     public String createArticle (@Valid ArticleForm articleForm, BindingResult bindingResult) {
-        return "article_list";
+        if (bindingResult.hasErrors()) {
+            return "article_form";
+        }
+        this.articleService.createArticle(articleForm);
+        return "redirect:/articles/list";
     }
 }
